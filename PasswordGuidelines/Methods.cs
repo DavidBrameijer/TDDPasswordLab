@@ -18,35 +18,13 @@ namespace PasswordGuidelines
 
         public static bool AddPassword(string password, List<string> passwords)
         {
-            if (password == "admin")
+            if(passwords.Any(p => p == password))
             {
-                foreach(string p in passwords)
-                {
-                    if (p == "admin")
-                    {
-                        return false;
-                    }
-                }
-                return true;
+                return false;
             }
-            if(password == "mod")
+            if (password == "admin" || password == "mod")
             {
-                foreach (string p in passwords)
-                {
-                    if (p == "mod")
-                    {
-                        return false;
-                    }
-                }
                 return true;
-            }
-            foreach (string p in passwords)
-            {
-                if (p == password)
-                {
-                    return false;
-                }
-
             }
             bool numberButNot6 = false;
             int capitalVowelsCount = 0;
@@ -67,17 +45,17 @@ namespace PasswordGuidelines
                     {
                         capitalVowelsCount++;
                     }
+            }
                 if (numberButNot6 = false || capitalVowelsCount < 2)
                 {
                     return false;
                 }
-            }
 
-            if(password.Length < 7 && password.Length > 12)
+            if(password.Length <= 7 || password.Length >= 12)
             {
                 return false;
             }
-            else if (password.Contains(" "))
+            if (password.Contains(" "))
             {
                 return false;
             }

@@ -14,16 +14,16 @@ namespace PasswordLab
         [InlineData("password", false)]
         [InlineData("B6mUOj1", false)]
         [InlineData("mod", false)]
+        [InlineData("pAsswOrd1", true)]
+        [InlineData("PrInglE5", true)]
 
         public void PasswordRequirements(string pass, bool expected)
         {
+            //Arrange
             List<string> passwords = new List<string>()
             {
                 "mod",
             };
-
-            //Arrange
-            Methods sut = new Methods();
             //Act
             bool result = Methods.AddPassword(pass, passwords);
             //Assert
